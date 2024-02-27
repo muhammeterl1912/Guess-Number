@@ -12,7 +12,7 @@ https://muhammeterl1912.github.io/Guess-Number/
 ## Features
 
 - Gamer can not enter duplicate numbers.
-- Gamer can not enter text or a number between 1-25.
+- Gamer can not enter text or a number not between 1-25.
 - Top-score indicator.
 - DOM Manipulations.
 - Local Storage.
