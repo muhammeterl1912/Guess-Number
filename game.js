@@ -2,25 +2,24 @@ let randomNumbers = Math.ceil(Math.random() * 25);
 console.log(randomNumbers);
 let message = document.querySelector(".msg");
 let score = 10;
-let topScore = localStorage.getItem("top-score")||0
-document.querySelector(".top-score").textContent = topScore
+let topScore = localStorage.getItem("top-score") || 0;
+document.querySelector(".top-score").textContent = topScore;
 
 document.querySelector(".check").addEventListener("click", () => {
   const guess = +document.querySelector(".guess").value;
-  if (!guess) {
-    message.textContent = "Please enter a valid nubmer...";
-  } 
-  
-  else if (guess < 0 || guess >=25){    message.textContent = "Please enter a number between 1 and 25!!!";}
-  
-  else if (guess === randomNumbers) {
+  if (!guess || guess < 0 || guess > 25) {
+    message.textContent =
+      "Please enter a valid number and a number between 1 and 25!!!";
+    document.querySelector(".guess").value = "";
+    document.querySelector(".guess").focus();
+  } else if (guess === randomNumbers) {
     message.textContent = "congratulations! You won the game.";
     document.querySelector("body").style.backgroundColor = "green";
     document.querySelector(".number").textContent = randomNumbers;
     document.querySelector(".check").setAttribute("disabled", true);
     if (score > topScore) {
       // Local Storage
-      localStorage.setItem("top-score",score)
+      localStorage.setItem("top-score", score);
       // Local Storage
       topScore = score;
       document.querySelector(".top-score").textContent = score;
@@ -35,9 +34,9 @@ document.querySelector(".check").addEventListener("click", () => {
       document.querySelector(".guess").value = "";
       document.querySelector(".guess").focus();
     } else {
-      message.textContent = "Game Over!";
       document.querySelector(".score").textContent = 0;
       document.querySelector("body").style.backgroundColor = "red";
+      message.textContent = `Game Over!The Correct answer was ${randomNumbers}`;
     }
   }
 });
@@ -45,14 +44,22 @@ document.querySelector(".check").addEventListener("click", () => {
 const again = document.querySelector(".again");
 again.addEventListener("click", () => {
   document.querySelector("body").style.backgroundColor = "#2d3436";
-  randomNumbers = Math.ceil(Math.random() * 25);
+  randomNumbers = Math.ceil(Math.random() * 20);
+  console.log(randomNumbers);
+
   score = 10;
-  document.querySelector(".score").textContent = +score;
+
+  document.querySelector(".score").textContent = score;
+
   document.querySelector(".number").textContent = "?";
+
   document.querySelector(".guess").value = "";
-  document.querySelector(".guess").focus();
-  message.textContent = "The game starts for new player.";
+
+  message.textContent = "The game starts for new player... ";
+
+  document.querySelector(".check").disabled = false;
 });
+
 // Enter Button
 document.addEventListener("keydown", (e) => {
   e.key === "Enter" && document.querySelector(".check").click();
