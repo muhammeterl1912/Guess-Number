@@ -13,7 +13,8 @@ https://muhammeterl1912.github.io/Guess-Number/
 
 - Gamer can not enter duplicate numbers.
 - Gamer can not enter text or a number between 1-25.
-- Top-score indicator
+- Top-score indicator.
+- DOM Manipulations.
 - Local Storage.
 - Again button for new game.
 - Red color for the lose and green color for the win.
