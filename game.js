@@ -1,5 +1,5 @@
 let randomNumbers = Math.ceil(Math.random() * 25);
-console.log(randomNumbers);
+// console.log(randomNumbers);
 let message = document.querySelector(".msg");
 let score = 10;
 let duplicate = [];
