@@ -2,11 +2,13 @@ let randomNumbers = Math.ceil(Math.random() * 25);
 console.log(randomNumbers);
 let message = document.querySelector(".msg");
 let score = 10;
+let duplicate = [];
 let topScore = localStorage.getItem("top-score") || 0;
 document.querySelector(".top-score").textContent = topScore;
 
 document.querySelector(".check").addEventListener("click", () => {
   const guess = +document.querySelector(".guess").value;
+
   if (!guess || guess < 0 || guess > 25) {
     message.textContent =
       "Please enter a valid number and a number between 1 and 25!!!";
@@ -17,6 +19,7 @@ document.querySelector(".check").addEventListener("click", () => {
     document.querySelector("body").style.backgroundColor = "green";
     document.querySelector(".number").textContent = randomNumbers;
     document.querySelector(".check").setAttribute("disabled", true);
+
     if (score > topScore) {
       // Local Storage
       localStorage.setItem("top-score", score);
@@ -39,6 +42,7 @@ document.querySelector(".check").addEventListener("click", () => {
       message.textContent = `Game Over!The Correct answer was ${randomNumbers}`;
     }
   }
+  duplicateNumbers(guess);
 });
 
 const again = document.querySelector(".again");
@@ -64,3 +68,14 @@ again.addEventListener("click", () => {
 document.addEventListener("keydown", (e) => {
   e.key === "Enter" && document.querySelector(".check").click();
 });
+
+function duplicateNumbers(number) {
+  if (duplicate.includes(number)) {
+    score++;
+    message.textContent = `You have already entered ${number} enter unique number.`;
+    document.querySelector(".guess").value = "";
+    document.querySelector(".guess").focus();
+    return;
+  }
+  duplicate.push(number);
+}
