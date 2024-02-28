@@ -56,6 +56,8 @@ const check = () => {
 
 const again = document.querySelector(".again");
 again.addEventListener("click", () => {
+  duplicate = [];
+  check()
   document.querySelector("body").style.backgroundColor = "#2d3436";
   randomNumbers = Math.ceil(Math.random() * 25);
   console.log(randomNumbers);
