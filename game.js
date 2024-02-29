@@ -24,19 +24,22 @@ const check = () => {
       "Please enter a valid number and a number between 1 and 25!!!";
     guessSelector.value = "";
     guessSelector.focus();
-  } else if (guess === randomNumbers) {
+    return;
+  }
+  if (guess === randomNumbers) {
     message.textContent = "congratulations! You won the game.";
     document.querySelector("body").style.backgroundColor = "green";
     document.querySelector(".number").textContent = randomNumbers;
     document.querySelector(".check").setAttribute("disabled", true);
-
-    if (score > topScore) {
-      // Local Storage
-      localStorage.setItem("top-score", score);
-      // Local Storage
-      topScore = score;
-      document.querySelector(".top-score").textContent = score;
-    }
+    duplicate = [];
+    return;
+  }
+  if (score > topScore) {
+    // Local Storage
+    localStorage.setItem("top-score", score);
+    // Local Storage
+    topScore = score;
+    document.querySelector(".top-score").textContent = score;
   } else {
     if (score > 1) {
       score--;
@@ -57,7 +60,7 @@ const check = () => {
 const again = document.querySelector(".again");
 again.addEventListener("click", () => {
   duplicate = [];
-  check()
+  check();
   document.querySelector("body").style.backgroundColor = "#2d3436";
   randomNumbers = Math.ceil(Math.random() * 25);
   console.log(randomNumbers);
