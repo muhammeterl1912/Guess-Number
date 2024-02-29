@@ -19,7 +19,7 @@ const check = () => {
   }
   // console.log(duplicate,res,guess)
   duplicate.push(guess);
-  if (!guess || guess < 0 || guess > 25) {
+  if (!guess || guess <= 0 || guess > 25) {
     message.textContent =
       "Please enter a valid number and a number between 1 and 25!!!";
     guessSelector.value = "";
@@ -60,6 +60,7 @@ const check = () => {
 const again = document.querySelector(".again");
 again.addEventListener("click", () => {
   duplicate = [];
+  document.querySelector(".guess").focus()
   check();
   document.querySelector("body").style.backgroundColor = "#2d3436";
   randomNumbers = Math.ceil(Math.random() * 25);
